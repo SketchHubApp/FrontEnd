@@ -30,6 +30,9 @@ class _WorkSpaceState extends State<WorkSpace> {
                   _controller.redo();
                 }, icon: Icon(Icons.redo),
               ),
+              IconButton(onPressed: (){
+                _controller.clear();
+                }, icon: Icon(Icons.takeout_dining_rounded)),
               IconButton(onPressed: (){}, icon: Icon(Icons.add)),
               SizedBox(width: MediaQuery.of(context).size.width*0.28,),
               IconButton(onPressed: (){
