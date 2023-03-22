@@ -137,8 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: GridView.builder(
           itemCount: 2,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-          ),
+            crossAxisCount: 3),
           itemBuilder: (BuildContext context,int index){
             return GestureDetector(
               onTap: (){
@@ -172,7 +171,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget RecentList(BuildContext context){
     int listIndex = 5;
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 230),
       color: Colors.red,
       height: RecentMenuSize ? MediaQuery.of(context).size.height * 0.05 * listIndex : 0, // x listIndex
       width: RecentMenuSize ? MediaQuery.of(context).size.width * 0.24 : 0,
@@ -182,7 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget SharList(BuildContext context){
     int listIndex = 1;
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 230),
       color: Colors.black,
       height: SharMenuSize ? MediaQuery.of(context).size.height * 0.05 * listIndex : 0, // x listIndex
       width: SharMenuSize ? MediaQuery.of(context).size.width * 0.24 : 0,
