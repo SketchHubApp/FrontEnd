@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.menu)),
         ],
         backgroundColor: AppColors.backgroundColor,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
       body: Row(
@@ -132,12 +132,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget Archive(BuildContext context){
     return AnimatedContainer(
       width: MediaQuery.of(context).size.width,
-      //color: Colors.amber,
       duration: const Duration(milliseconds: 230),
       child: GridView.builder(
           itemCount: 2,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           itemBuilder: (BuildContext context,int index){
             return GestureDetector(
               onTap: (){
@@ -167,7 +165,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
   @override
   Widget RecentList(BuildContext context){
     int listIndex = 5;
@@ -178,7 +175,6 @@ class _HomeScreenState extends State<HomeScreen> {
       width: RecentMenuSize ? MediaQuery.of(context).size.width * 0.24 : 0,
     );
   }
-
   @override
   Widget SharList(BuildContext context){
     int listIndex = 1;

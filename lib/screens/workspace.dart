@@ -4,7 +4,6 @@ import '../Utill/colors.dart';
 
 class WorkSpace extends StatefulWidget {
   const WorkSpace({Key? key}) : super(key: key);
-
   @override
   State<WorkSpace> createState() => _WorkSpaceState();
 }
@@ -34,7 +33,7 @@ class _WorkSpaceState extends State<WorkSpace> {
                 _controller.clear();
                 }, icon: Icon(Icons.takeout_dining_rounded)),
               IconButton(onPressed: (){}, icon: Icon(Icons.add)),
-              SizedBox(width: MediaQuery.of(context).size.width*0.28,),
+              SizedBox(width: MediaQuery.of(context).size.width*0.24,),
               IconButton(onPressed: (){
                 _showMyDialog("penc");
               }, icon: Icon(Icons.draw)),
@@ -47,6 +46,7 @@ class _WorkSpaceState extends State<WorkSpace> {
                   _isErasing = !_isErasing;
                 });
               }, icon: Icon(Icons.edit_off)),
+              //SizedBox(width: MediaQuery.of(context).size.width*0.24,),
             ],
           ),
         ),
@@ -54,6 +54,9 @@ class _WorkSpaceState extends State<WorkSpace> {
         iconTheme: IconThemeData(
             color: Colors.black,
         ),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.share)),
+        ],
         elevation: 0,
       ),
       body: Draw(
@@ -68,6 +71,7 @@ class _WorkSpaceState extends State<WorkSpace> {
       ),
     );
   }
+
   Future<void> _showMyDialog(String type){
     double _currentSliderValue = 2.0;
     return showDialog<void>(

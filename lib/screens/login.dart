@@ -12,8 +12,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-
-  // 텍스트필드 컨트롤러 삭제
   final FocusNode _pwFocus = FocusNode(); // pw 포커스
   Color autoLoginButtonColor = Colors.blueAccent;
   bool autoLogin = true;
