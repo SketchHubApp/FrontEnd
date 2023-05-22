@@ -18,7 +18,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		MgGwBLbKKAKegNH6SwO6EdjVSx4=
+		+Srnsee09XSTipQGblTSLpfwwvE=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		GVppPYs1l7GAea3pGBbOBhu6Q9o=
+		+BJEiHXwU0u6sniL9x495FYwZYM=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		jcpld8hMkFKEvSkagJHDGxrYivs=
+		VDLmpWhC5SATr3NZcaL60qk4j9g=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		27y5WGuKkRoSZiY0WFSY/B/EoeQ=
+		3yqmVXOOu0UYDRtnr2CbBIldWLw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Add_book.png</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		KO23qOScibdnjFgH6Tzhkc09eZA=
+		2i5p1eaFCqwndj9f1JkJ7jrjs0A=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -246,19 +246,19 @@
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/Info.plist</key>
 		<data>
-		g7MXPn8fOdwuDlu/ZJfe3wTv2ic=
+		pTUj648qwxeb9fTTttSKsgT6aLM=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
 		<data>
-		tbJpZM+b0ariWODeCNK3gsbgwAQ=
+		KmA41Bq9MV/RVabE1F8ETV8HZeo=
 		</data>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
 		<data>
-		l4PK+KzyI4edhfwUbk84RmJ4YyQ=
+		eESdPAiIyxvlBI/r3AYym84D7Uw=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		tmUZNpQTxkyZIozIdwuWi7W2gvE=
+		iu7txYw2MQFxZv+cIdQQokATz8w=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -292,7 +292,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G5xuv7U/7XsKpn5fX1EEhZ07ZA5FnReLw38ucbXZ/xo=
+			0nGGrz81d2OZ13rW3EUmgFdcQvEOoRCW3O6+GBCpAnA=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -341,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0nxUpT702aRw+fpyjitVYNqZlbvtcyFobJRs8GCa/qI=
+			d9Hak/vwUxN2lzM9Ylp/gC1/pk4ZySD+gfX13x/3fEQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -355,7 +355,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MpaoSNMpZhc9hkmbeC/EMWYdiTo2+c7UvRWoY2jTuHc=
+			oa88+P5fzpHUnnM2uEMvs4Lv/isWB0H9VW33Mcs7mWA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -376,7 +376,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			lm9bMN5aB5k7PIEf7SxvKCiPreDD1KmOrAl/A6s3NWo=
+			p8Tq3p1682T8n6lgZO3JvEpDDh8n7GvKGKGfnt/tR7M=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Add_book.png</key>
@@ -425,7 +425,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			t9qWhD3SYozWl3i+yQ9vclx0h+YdqdRuu5uKJ0Y8IxY=
+			GyP1xjjUv4B9RE+vczaPjSJYL2Uw0ntOjzCPcu3KPJI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -691,21 +691,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			q+DeyRaCcPKTRuRa/WLoyTzw8rKMFap4UbraSqEaFJE=
+			QHojuE9N68Op4MLJZLKXGETD9uZW47EVfTZPSR11QW0=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			goGutj2fV+spasyJAX1jmTryGMPw8OMtilWCdbCcp48=
+			jlI7ny13lE8IjDhaWj1Z9HpaGeYcVH/d78BxiOFrsGY=
 			</data>
 		</dict>
 		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FLVbIXtsTRZxdbOqlZ/8RabBGaQvkoo9IV6X6EomUm4=
+			9/HtSiPmHG3HRu2T58vnBusEFGKpeCaAPcqSwfQuj7Q=
 			</data>
 		</dict>
 	</dict>

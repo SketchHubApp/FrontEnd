@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/Utill/colors.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:sketch/api/api.dart';
 
 import 'Home.dart';
 
@@ -11,12 +12,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final FocusNode _pwFocus = FocusNode(); // pw 포커스
   Color autoLoginButtonColor = Colors.blueAccent;
   bool autoLogin = true;
-  String? email = null;
-  String? password = null;
+  String email = "";
+  String password = "";
   Map<String,dynamic> idpw={};
   Color mint  = Colors.black;
   Color r_color = Colors.black;
@@ -25,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   double _hight = 0.0;
   String titleName = "Let's Start";
   int a = 1;
-
+  CrossAxisAlignment _crossAnime = CrossAxisAlignment.center;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           color: AppColors.backgroundColor,
           child: Center(
             child: Column(
+              crossAxisAlignment: _crossAnime,
               children: [
                 Flexible(
                   flex: 2 * a,
@@ -124,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 hintColor: Colors.black,
                             ),
                             child: TextFormField(
+                              controller: _idController,
                               cursorColor: Colors.black,
                               style: TextStyle(
                                 color: Colors.black,
@@ -158,7 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         width: 2, color: r_color)),
                               ),
                               onSaved: (String? value) {
-                                email = value!;
+                                print(_idController.text);
+                                email = _idController.text!;
                               },
                               //validator: LoginControl().validateEmail,
                               onFieldSubmitted: (v) {
@@ -178,6 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 hintColor: Colors.white,
                               ),
                               child: TextFormField(
+                                controller: _passwordController,
                                 // 숫자 입력 키보드
                                 cursorColor: r_color,
                                 focusNode: _pwFocus,
@@ -191,8 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 obscureText: true,
                                 decoration: new InputDecoration(
                                   labelStyle: TextStyle(
-                                      color:
-                                      Colors.black),
+                                      color: Colors.black),
                                   errorBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)),
@@ -217,9 +223,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   labelText: '비밀번호 입력',
                                 ),
-
                                 onSaved: (String? value) {
-                                  password = value!;
+                                  print(_passwordController.text);
+                                  password = _passwordController.text!;
                                 },
                                 //validator: LoginControl().validatePassword,
                                 onFieldSubmitted: (temp) async {},
@@ -239,38 +245,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: const EdgeInsets.only(
                                     right: 7.0, left: 2.0),
                                 child: GestureDetector(
-
                                   onDoubleTap: () {},
                                   onTap: () {},
                                   child: ElevatedButton(
-                                      // style: ButtonStyle(
-                                      //   shape: RoundedRectangleBorder(
-                                      //       borderRadius:
-                                      //       BorderRadius.circular(8)),
-                                      //   color: Colors.blue,
-                                      // ),
                                     onPressed: () async {
-                                      print("Login");
-                                      // if (_formKey.currentState!
-                                      //     .validate()) {
-                                      //   _formKey.currentState!.save();
-                                      //   // 키보드 닫기 => 에러 수정해야함 로그인 실패시 예외처리
-                                      //   FocusScope.of(context)
-                                      //       .requestFocus(FocusNode());
-                                      //
-                                      //   Future.delayed(
-                                      //       Duration(milliseconds: 500),
-                                      //           () async {
-                                      //         await LoginControl().requestLogin(context,
-                                      //             email, password,
-                                      //             autoLoginPermission:
-                                      //             autoLogin,
-                                      //             type: 2);
-                                      //       });
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                                      );
+                                      Map<dynamic,dynamic> loginAuth = await Api().getLoginAuth(_idController.text, _passwordController.text);
+                                      //print("Login :${_idController.text}  - ${_passwordController.text} \n ${loginAuth["body"]}");
+                                      if(loginAuth["body"]['result'] != null){
+                                        r_color =Colors.black;
+                                        mint = Colors.black;
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(builder: (context) => HomeScreen()),
                                         );
+                                      }else{
+                                        setState(() {
+                                          r_color =Colors.red;
+                                          mint = Colors.red;
+                                          // _crossAnime = CrossAxisAlignment.start;
+                                          // Future.delayed(const Duration(microseconds: 100), () {
+                                          //   _crossAnime = CrossAxisAlignment.end; // Prints after 1 second.
+                                          // });
+                                          // _crossAnime = CrossAxisAlignment.center;
+                                        });
+                                      }
                                       // }
                                     },
                                     child: Text("로그인",
