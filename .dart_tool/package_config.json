@@ -308,6 +308,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "socket_io_client",
+      "rootUri": "file:///Users/kimjunbeom/.pub-cache/hosted/pub.dev/socket_io_client-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "socket_io_common",
+      "rootUri": "file:///Users/kimjunbeom/.pub-cache/hosted/pub.dev/socket_io_common-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "source_map_stack_trace",
       "rootUri": "file:///Users/kimjunbeom/.pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.1",
       "packageUri": "lib/",
@@ -441,9 +453,9 @@
     },
     {
       "name": "web_socket_channel",
-      "rootUri": "file:///Users/kimjunbeom/.pub-cache/hosted/pub.dev/web_socket_channel-2.3.0",
+      "rootUri": "file:///Users/kimjunbeom/.pub-cache/hosted/pub.dev/web_socket_channel-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.15"
     },
     {
       "name": "webkit_inspection_protocol",
@@ -464,7 +476,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-03-29T12:51:26.014270Z",
+  "generated": "2023-05-30T07:17:02.996990Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }
