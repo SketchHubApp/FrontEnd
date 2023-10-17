@@ -7,9 +7,15 @@ import 'dart:convert';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   group("api test", (){
+
     test("login", () async{
       var result = await Api().getLoginAuth('kimjunbeom', 'hk0301234');
       print("Login : ${result["body"]}");
+    });
+
+    test("sketchAI", () async{
+      //var result = await Api().getAiSketch();
+      //print("Sketch Uint8List : ${result['body']}");
     });
   });
 }

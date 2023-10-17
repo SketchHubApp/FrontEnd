@@ -1,8 +1,13 @@
 # This is a generated file; do not edit or check into version control.
-url_launcher=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher-6.1.10/
-url_launcher_android=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.25/
-url_launcher_ios=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.2/
-url_launcher_linux=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.4/
-url_launcher_macos=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.4/
-url_launcher_web=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.16/
-url_launcher_windows=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.5/
+path_provider=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/path_provider-2.1.1/
+path_provider_android=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/path_provider_android-2.2.0/
+path_provider_foundation=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1/
+path_provider_linux=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1/
+url_launcher=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher-6.1.11/
+url_launcher_android=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_android-6.1.0/
+url_launcher_ios=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.5/
+url_launcher_linux=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.6/
+url_launcher_macos=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.7/
+url_launcher_web=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.19/
+url_launcher_windows=/Users/kimjunbeom/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.8/
