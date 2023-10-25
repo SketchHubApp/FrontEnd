@@ -42,15 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Flexible(
                   flex: 2 * a,
                     child: AnimatedContainer(
-                      duration: const Duration(seconds: 1),
-                      height: MediaQuery.of(context).size.height * 0.3 * a,
+                      duration: const Duration(milliseconds: 350),
+                      height: MediaQuery.of(context).size.height * 0.21 * a,
                     ),
                 ),
                 Flexible(
                   flex: 4,
                   child: AnimatedContainer(
                     height: MediaQuery.of(context).size.height,
-                    duration: const Duration(seconds: 1),
+                    duration: const Duration(milliseconds: 350),
                     child: Image.asset("assets/images/Logo_notBack.png",
                     fit: BoxFit.fitHeight,
                     ),
@@ -106,8 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   Widget Login(BuildContext context){
     return Container(
-      height: 600,
-      width: 500,
+      height: 550,
+      width: 420,
       child: Column(
         children: <Widget>[
           Flexible(
@@ -121,8 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          width: 400,
-                          height: 75,
+                          width: 350,
+                          height: 60,
                           child: Theme(
                             data: new ThemeData(
                                 hintColor: Colors.black,
@@ -177,8 +177,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            width: 400,
-                            height: 75,
+                            width: 350,
+                            height: 60,
                             child: Theme(
                               data: new ThemeData(
                                 hintColor: Colors.white,
@@ -240,7 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: Alignment.center,
                             child: SizedBox(
                               width: 200 ,
-                              height: 55 ,
+                              height: 50 ,
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     right: 7.0, left: 2.0),
@@ -308,12 +308,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Icon(
                                             Icons.check_circle_outline,
                                             color: autoLoginButtonColor,
-                                            size:
-                                            25,
+                                            size: 20,
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 8.0, bottom: 2.0),
+                                                left: 9.0, bottom: 4.0),
                                             child: Container(
                                               child: Text("자동 로그인",
                                                   style: TextStyle(

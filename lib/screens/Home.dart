@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int MenuSize = 0;
   bool RecentMenuSize = false;
   bool SharMenuSize = false;
+  int books = 2;
   List<String> bookTitle = ["assets/images/Add_book.png","assets/images/book.png"] ;
   @override
   Widget build(BuildContext context) {
@@ -134,11 +135,16 @@ class _HomeScreenState extends State<HomeScreen> {
       width: MediaQuery.of(context).size.width,
       duration: const Duration(milliseconds: 230),
       child: GridView.builder(
-          itemCount: 2,
+          itemCount: books,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           itemBuilder: (BuildContext context,int index){
             return GestureDetector(
               onTap: (){
+                setState(() {
+                  if(index == 0 ){
+                    books +=1;
+                  }
+                });
                 print("push");
                 Navigator.push(
                   context,
@@ -155,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Card(
                   shadowColor: Colors.white30,
                   color: Colors.white,
-                  child: Image.asset(bookTitle[index],
+                  child: Image.asset((index == 0 )?bookTitle[0]:bookTitle[1],
                   fit: BoxFit.cover,
                   ),
                 ),
@@ -170,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
     int listIndex = 5;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 230),
-      color: Colors.red,
+      color: Colors.white,
       height: RecentMenuSize ? MediaQuery.of(context).size.height * 0.05 * listIndex : 0, // x listIndex
       width: RecentMenuSize ? MediaQuery.of(context).size.width * 0.24 : 0,
     );
@@ -180,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
     int listIndex = 1;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 230),
-      color: Colors.black,
+      color: Colors.white,
       height: SharMenuSize ? MediaQuery.of(context).size.height * 0.05 * listIndex : 0, // x listIndex
       width: SharMenuSize ? MediaQuery.of(context).size.width * 0.24 : 0,
     );

@@ -77,6 +77,7 @@ flutter:
     - assets/images/Logo_notBack.png
     - assets/images/book.png
     - assets/images/Add_book.png
+    - assets/images/book.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

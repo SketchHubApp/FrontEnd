@@ -9,6 +9,7 @@ import 'package:image/image.dart' as img;
 import 'dart:ui' as ui;
 import 'package:sketch/api/api.dart';
 import 'dart:convert' as convert;
+import 'dart:async';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: WorkSpace(),
-      ),
+      home: WorkSpace(),
     );
   }
 }
@@ -38,6 +37,7 @@ class _WorkSpaceState extends State<WorkSpace> {
   final GlobalKey globalKey = GlobalKey();
 
   Rect captureRect = Rect.zero;
+  Rect pasteRect = Rect.zero;
   Offset startDrag = Offset(0, 0);
   Offset endDrag = Offset(0, 0);
 
@@ -48,6 +48,27 @@ class _WorkSpaceState extends State<WorkSpace> {
 
   Map<int, Uint8List> imageDatas = {};
   Image? __image ;
+
+  final _img = AssetImage('assets/images/book.png');
+  ImageInfo? imageInfo;
+
+  void loadImage() async{
+    final completer = Completer<ImageInfo>();
+    final listener = ImageStreamListener((ImageInfo info, _) {
+      if (!completer.isCompleted) completer.complete(info);
+    });
+
+    _img.resolve(ImageConfiguration()).addListener(listener);
+    imageInfo = await completer.future;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadImage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,8 +99,13 @@ class _WorkSpaceState extends State<WorkSpace> {
               }, icon: Icon(Icons.edit_off)),
               IconButton(onPressed: (){
                   setState(() {
-                    captureRect = Rect.fromPoints(Offset(0,0), Offset(0,0));
                     isSelecting =! isSelecting;
+                    if(isSelecting){
+                      pasteRect = Rect.zero;
+                    }else{
+                      pasteRect = captureRect;
+                    }
+                    captureRect = Rect.fromPoints(Offset(0,0), Offset(0,0));
                     isSelecOk = false;
                   });
                   setState(() {
@@ -109,21 +135,29 @@ class _WorkSpaceState extends State<WorkSpace> {
               child: FutureBuilder(
                   future: getImage(),
                   builder: (BuildContext context, AsyncSnapshot snapshot){
-                    return ListView.builder(
+                    return (!snapshot.hasData)?ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: imageDatas.length,
                         itemBuilder: (BuildContext context,int index){
+                          //print(snapshot.data.toString());
                           return Column(
                             children: [
                               Flexible(
-                                  flex:9,
+                                  flex:10,
                                   child: Container(
                                     height: MediaQuery.of(context).size.height *0.3,
                                     width: MediaQuery.of(context).size.width *0.23,
                                     child: Card(
-                                        child:(snapshot.hasData)?
-                                        Image.memory(snapshot.data[index],fit: BoxFit.contain,):
-                                        Center(child: CircularProgressIndicator(),),
+                                      child:!(imageDatas.length > 0)?
+                                      Image.memory(imageDatas[1] as Uint8List,
+                                        fit: BoxFit.contain,):
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                              image: MemoryImage(imageDatas[index]!.buffer.asUint8List()))
+                                        ),
+                                      ),
                                     ),
                                   )),
                               Flexible(
@@ -133,7 +167,7 @@ class _WorkSpaceState extends State<WorkSpace> {
                                 Text(index.toString() + "번째 이미지"),),
                             ],
                           );
-                        });
+                        }): Center(child: CircularProgressIndicator(),);
                   }),
             ),
           ),
@@ -160,6 +194,20 @@ class _WorkSpaceState extends State<WorkSpace> {
                 child: Stack(
                     fit: StackFit.passthrough,
                     children:[
+                      Positioned.fromRect(
+                        rect :pasteRect,
+                        child : (imageDatas.length > 0)?
+                        Container(
+                          decoration : BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image:AssetImage("/Users/kimjunbeom/Documents/SketchHub_front/assets/images/Logo.jpg"),
+                                //image: AssetImage('assets/images/book.png')
+                            ),
+                          ),
+                        ):
+                        Container(),
+                      ),
                       Draw(
                         controller: _controller,
                         backgroundColor: Colors.white30,
@@ -167,10 +215,25 @@ class _WorkSpaceState extends State<WorkSpace> {
                         strokeWidth: _strokeWidth,
                         isErasing: _isErasing,
                       ),
-                      Opacity(opacity: 0.5,
-                        child: Container(width :MediaQuery.of(context).size.width,color:(isSelecting)?Colors.white38:null, height :MediaQuery.of(context).size.height),),
-                      Positioned.fromRect(rect :(isSelecting)?captureRect:Rect.zero ,
-                        child : Container(decoration : BoxDecoration(border : Border.all(color: Colors.red,width: 2),),),)]),
+                      Opacity(opacity: 0.3,
+                        child: Container(
+                            width :MediaQuery.of(context).size.width,
+                            color:(isSelecting)?Colors.white38:null,
+                            height :MediaQuery.of(context).size.height
+                        ),
+                      ),
+                      Positioned.fromRect(
+                        rect :(isSelecting)?captureRect:Rect.zero,
+                        child : Container(
+                          decoration : BoxDecoration(
+                            border : Border.all(
+                                color: Colors.red,
+                                width: 2),
+                          ),
+                        ),
+                      ),
+                    ],
+                ),
               ),),
           ),
         ],
@@ -190,19 +253,29 @@ class _WorkSpaceState extends State<WorkSpace> {
 
   Future<void> setImage(Uint8List _image) async {
     setState(() {
-      imageDatas.clear();
       imageDatas.addAll({0:_image});
       print("Set: "+ imageDatas[0].toString());
     });
   }
 
   Future<Map<int, Uint8List>> getImage() async {
-    setState(() {});
     var result  = await Api().getAiSketch(imageDatas[0]!);
+    print(result);
     setState(() {
-      imageDatas.addAll({1:Uint8List.fromList(result['body'])});
+      imageDatas.addAll({1:result['result']});
     });
-    return imageDatas;
+
+    var _result = await {
+      0:imageDatas[0] as Uint8List,
+      1:result['result'] as Uint8List
+    };
+    return _result;
+  }
+
+  void pasteImage(){
+    setState(() {
+      pasteRect = captureRect;
+    });
   }
 
   Future<void> capturePng() async {
@@ -256,4 +329,18 @@ class _WorkSpaceState extends State<WorkSpace> {
     );
 }
 
+}
+
+class BoxPainter extends CustomPainter {
+
+  BoxPainter(this.rect,this.image);
+
+  final Rect rect;
+  final ui.Image image;
+
+  void paint(Canvas canvas, Size size){
+    canvas.drawImageRect(image ,rect ,rect , Paint());
+  }
+
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

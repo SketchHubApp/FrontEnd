@@ -1,6 +1,7 @@
-import 'package:draw_your_image/draw_your_image.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 void main() {
   runApp(MyApp());
 }
@@ -10,61 +11,101 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Drag to Select Area')),
-        body: ImageCapture(),
+        body: Center(
+          child: MyPainter(),
+        ),
       ),
     );
   }
 }
 
-class ImageCapture extends StatefulWidget {
+class MyPainter extends StatefulWidget {
   @override
-  _ImageCaptureState createState() => _ImageCaptureState();
+  _MyPainterState createState() => _MyPainterState();
 }
 
-class _ImageCaptureState extends State<ImageCapture> {
-  final _controller = DrawController();
-  bool _isErasing = false;
-  double _strokeWidth = 1.0;
-  Color selectedColor = Colors.blue;
-
-  Offset startDrag = Offset(0.0,0.0);
+class _MyPainterState extends State<MyPainter> {
+  Rect rect = Rect.zero;
+  Offset startDrag = Offset(0, 0);
   Offset currentDrag = Offset(0.0,0.0);
+  // Add your image asset in the AssetImage path.
+  final img = AssetImage('assets/images/book.png');
+  ImageInfo? imageInfo;
   bool isSelecting = false;
-
-  void updateDrag(DragUpdateDetails details) {
-    setState(() {
-      currentDrag = details.localPosition;
-      print(currentDrag);
+  Rect captureRect = Rect.zero;
+  void loadImage() async{
+    final completer = Completer<ImageInfo>();
+    final listener = ImageStreamListener((ImageInfo info, _) {
+      if (!completer.isCompleted) completer.complete(info);
     });
+
+    img.resolve(ImageConfiguration()).addListener(listener);
+    imageInfo = await completer.future;
+    setState(() {});
   }
+
+  @override
+  void initState() {
+    super.initState();
+    loadImage();
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onPanStart :(details){
-          setState(() {
-            startDrag=details.localPosition;
-            currentDrag=details.localPosition;
-          });
-        },
-          onPanUpdate :updateDrag,
-          child :Stack(
-              children:[
-                Container(width :300, height :300, color :Colors.yellow,),
-                Positioned.fromRect(rect :(isSelecting)?Rect.fromPoints(startDrag,currentDrag):Rect.zero ,
-                  child : Container(decoration : BoxDecoration(border : Border.all(color: Colors.red,width: 2),),),)]),),
-        TextButton(
-          child :Text('Start Selection'),
-          onPressed :(){setState(() { isSelecting = true; });}
-          ,),
-        TextButton(
-          child :Text('End Selection'),
-          onPressed :(){setState(() { isSelecting = false; });}
-          ,),
-      ],
+    return GestureDetector(
+      onPanStart: (details){
+        setState(() {
+          startDrag=details.localPosition;
+        });
+      },
+      onPanUpdate: updateDrag,
+      child:Stack(
+        children: [
+          Positioned.fromRect(
+            rect :captureRect,
+            child : Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('assets/images/book.png'),
+                ),
+              ),
+            ),
+          ),
+          // CustomPaint(
+          //   painter: BoxPainter(captureRect,
+          //       imageInfo!.image),
+          // )
+        ],
+      ),
     );
-    }
+
+
+
   }
+
+  void updateDrag(DragUpdateDetails details){
+    setState(() {
+      currentDrag = details.localPosition;
+      captureRect = Rect.fromPoints(startDrag, currentDrag);
+      print(currentDrag);
+    });
+  }
+}
+
+class BoxPainter extends CustomPainter {
+
+  BoxPainter(this.rect,this.image);
+
+  final Rect rect;
+  final ui.Image image;
+
+  void paint(Canvas canvas, Size size){
+    canvas.drawImageRect(image ,rect ,rect , Paint());
+  }
+
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
