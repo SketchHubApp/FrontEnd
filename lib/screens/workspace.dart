@@ -135,11 +135,10 @@ class _WorkSpaceState extends State<WorkSpace> {
               child: FutureBuilder(
                   future: getImage(),
                   builder: (BuildContext context, AsyncSnapshot snapshot){
-                    return (!snapshot.hasData)?ListView.builder(
+                    return ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: imageDatas.length,
                         itemBuilder: (BuildContext context,int index){
-                          //print(snapshot.data.toString());
                           return Column(
                             children: [
                               Flexible(
@@ -167,7 +166,7 @@ class _WorkSpaceState extends State<WorkSpace> {
                                 Text(index.toString() + "번째 이미지"),),
                             ],
                           );
-                        }): Center(child: CircularProgressIndicator(),);
+                        });
                   }),
             ),
           ),
@@ -194,26 +193,32 @@ class _WorkSpaceState extends State<WorkSpace> {
                 child: Stack(
                     fit: StackFit.passthrough,
                     children:[
-                      Positioned.fromRect(
-                        rect :pasteRect,
-                        child : (imageDatas.length > 0)?
-                        Container(
-                          decoration : BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image:AssetImage("/Users/kimjunbeom/Documents/SketchHub_front/assets/images/Logo.jpg"),
-                                //image: AssetImage('assets/images/book.png')
-                            ),
-                          ),
-                        ):
-                        Container(),
-                      ),
                       Draw(
                         controller: _controller,
                         backgroundColor: Colors.white30,
                         strokeColor: selectedColor,
                         strokeWidth: _strokeWidth,
                         isErasing: _isErasing,
+                      ),
+                      Positioned.fromRect(
+                        rect :pasteRect,
+                        child : (imageDatas.length >= 1 && !isSelecOk)?
+                        Container(
+                          decoration : BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image:MemoryImage(imageDatas[1]!.buffer.asUint8List()),
+                              //image: AssetImage('assets/images/book.png')
+                            ),
+                          ),
+                        ):
+                        Container(
+                          decoration : BoxDecoration(
+                            border : Border.all(
+                                color: Colors.red,
+                                width: 2),
+                          ),
+                        ),
                       ),
                       Opacity(opacity: 0.3,
                         child: Container(

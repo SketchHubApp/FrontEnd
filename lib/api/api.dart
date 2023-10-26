@@ -29,7 +29,7 @@ class Api{
     body = {"imageData": data};
     print("body: "+body.toString());
     try{
-      response = await http.post(Uri.parse(aiUrl), body: convert.jsonEncode(body), headers: {'accept': 'application/json',}).timeout(const Duration(seconds: 60));
+      response = await http.post(Uri.parse(aiUrl), body: convert.jsonEncode(body), headers: {'accept': 'application/json',}).timeout(const Duration(seconds: 100));
 
       result = await convert.jsonDecode(response.body);
 
